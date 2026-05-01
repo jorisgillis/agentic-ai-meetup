@@ -1,0 +1,8 @@
+{
+  "name": "ticket-prep",
+  "description": "A plugin to prepare the context for a new ticket",
+  "version": "1.0.0",
+  "author": {
+    "name": "Joris Gillis"
+  }
+}

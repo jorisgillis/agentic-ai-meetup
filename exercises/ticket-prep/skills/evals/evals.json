@@ -1,0 +1,46 @@
+{
+  "skill_name": "ticket-prep",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to work on PA-3467. Can you prep the codebase for me?",
+      "expected_output": "A markdown table of relevant files centered around search export functionality — specifically SearchXlsxExportGenerator, SearchRequestExportGenerator, CalculationType, and their test files.",
+      "files": [],
+      "expectations": [
+        "The output includes a markdown table with File, Relevance, and Reason columns",
+        "The file SearchXlsxExportGenerator.java appears in the table with High relevance",
+        "The file SearchRequestExportGenerator.java appears in the table with High relevance",
+        "At least one test file is included in the table (e.g. SearchXlsxExportGeneratorTest or SearchRequestExportGeneratorTest)",
+        "The file CalculationType.java appears in the table",
+        "The output contains a brief summary section explaining what the ticket is about"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hey, I'm picking up PA-3436 — something about comparison on start and end. What files should I look at?",
+      "expected_output": "A table of files related to comparison logic — ComparisonType, CalculationType, ComparisonController, and their tests.",
+      "files": [],
+      "expectations": [
+        "The output includes a markdown table with File, Relevance, and Reason columns",
+        "The file ComparisonType.java appears in the table with High relevance",
+        "The file ComparisonControllerTest.java or ComparisonController appears in the table",
+        "The file CalculationType.java appears in the table",
+        "At least one test file is included in the table",
+        "The output contains a brief summary section"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Prepping for PA-3375. It's about removing ignite cache data after pruning. What code is involved?",
+      "expected_output": "A table pointing to IndexFilesService and its test, plus the pom.xml for dependency context.",
+      "files": [],
+      "expectations": [
+        "The output includes a markdown table with File, Relevance, and Reason columns",
+        "The file IndexFilesService.java appears in the table with High relevance",
+        "The file IndexFilesServiceTest.java appears in the table",
+        "The pom.xml file (tm-compute-service/pom.xml) appears in the table",
+        "The output contains a brief summary section"
+      ]
+    }
+  ]
+}
