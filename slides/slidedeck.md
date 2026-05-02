@@ -133,12 +133,35 @@ Think of it as a **“recipe” the agent follows**.
   - Journal Buddy
   - Ticket Prep
 - Ideas
-  - PR Review
-  - Test Gap Finder
-  - Meetig Effectuator
-  - Documentation Drift Detector
+  - PR Review: prioritize code reviews
+  - Test Gap Finder: find missed test cases
+  - Meetig Effectuator: turn meeting notes into tickets
+  - Documentation Drift Detector: spot outdated documentation
 
 ---
 
 ![bg 75%](upskilling.jpg)
+
+
+---
+
+# Distributing your agent skill
+
+- Claude Code: use plugins
+- Generic: [Agent Pacakge Manager
+  (APM)](https://microsoft.github.io/apm/getting-started/quick-start/)
+
+Slide deck ->
+![bg right:40% 50%](link-qrcode.png)
+
+
+---
+
+# More pointers
+
+- APM
+- Claude Plugin
+- OpenCode & Pi.dev (open source harnesses with more customizability)
+- DSPy: structured agents
+
 
