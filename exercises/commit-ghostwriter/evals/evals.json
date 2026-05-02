@@ -1,0 +1,82 @@
+{
+  "skill_name": "write-commit",
+  "evals": [
+    {
+      "id": 1,
+      "name": "feature-authentication",
+      "prompt": "Write a commit message for the JWT authentication feature. Ticket DF-438.",
+      "setup_commands": [
+        "git init",
+        "git config user.email 'test@example.com'",
+        "git config user.name 'Test User'",
+        "echo 'class JWTMiddleware:\n    def __init__(self, secret):\n        self.secret = secret\n    \n    def encode(self, payload):\n        pass\n    \n    def decode(self, token):\n        pass' > auth.py",
+        "echo 'JWT_SECRET = \"secret-key-123\"\nJWT_ALGORITHM = \"HS256\"\nJWT_EXPIRATION = 3600' > config.py",
+        "git add auth.py config.py",
+        "echo 'pyjwt==2.0.0' >> requirements.txt",
+        "git add requirements.txt"
+      ],
+      "expectations": [
+        "Commit type is 'feat' with scope 'auth'",
+        "Header follows conventional commit format",
+        "Body explains why JWT was chosen (scalability, stateless, security)",
+        "Includes 'Refs: DF-438' footer",
+        "Focuses on reasoning and benefits, not just what changed",
+        "Mentions technical details about implementation (HS256, configuration)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "bug-fix-parsing",
+      "prompt": "Help me write a commit message for fixing the array parsing bug that crashed on multiple spaces.",
+      "setup_commands": [
+        "git init",
+        "git config user.email 'test@example.com'",
+        "git config user.name 'Test User'",
+        "echo 'import re\n\ndef parse_array(s):\n    # Fixed: was using split() which handles any whitespace\n    # Now preserves original spacing for accurate reconstruction\n    return re.split(r\"\\s+\", s)' > parser.py",
+        "echo 'import unittest\nfrom parser import parse_array\n\nclass TestParser(unittest.TestCase):\n    def test_multi_space(self):\n        result = parse_array(\"a  b\")\n        self.assertEqual(result, [\"a\", \"b\"])\n        \n    def test_single_space(self):\n        result = parse_array(\"a b\")\n        self.assertEqual(result, [\"a\", \"b\"])' > tests/test_parser.py",
+        "git add parser.py tests/test_parser.py"
+      ],
+      "expectations": [
+        "Commit type is 'fix' with scope 'parser'",
+        "Header summarizes the specific bug (multiple spaces handling)",
+        "Body explains root cause (index mismatch, whitespace handling)",
+        "Mentions test coverage addition for regression prevention",
+        "Technical details about the fix approach (regex pattern)",
+        "Explains impact (crashes, data corruption)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "commit-review",
+      "prompt": "Review this commit message and improve it: 'Updated API docs'",
+      "setup_commands": [],
+      "expectations": [
+        "Identifies missing context (what docs were updated, why)",
+        "Suggests specific improvements to structure and content",
+        "Proposes adding technical details about API changes",
+        "Recommends conventional commit format with proper type",
+        "Focuses on value to readers and maintainability",
+        "Provides concrete example of improved message"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "missing-ticket",
+      "prompt": "Write a commit message for adding utility functions",
+      "setup_commands": [
+        "git init",
+        "git config user.email 'test@example.com'",
+        "git config user.name 'Test User'",
+        "echo 'def validate_email(email):\n    \"\"\"Validate email format.\"\"\"\n    import re\n    pattern = r\"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\"\n    return bool(re.match(pattern, email))\n\ndef sanitize_input(text):\n    \"\"\"Remove potentially harmful characters.\"\"\"\n    return text.strip()' > utils.py",
+        "git add utils.py"
+      ],
+      "expectations": [
+        "Skill asks for ticket reference before proceeding",
+        "Does not generate commit message without ticket info",
+        "Provides clear question about ticket identifier",
+        "Maintains professional and helpful tone",
+        "Explains why ticket reference is needed"
+      ]
+    }
+  ]
+}

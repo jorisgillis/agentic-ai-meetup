@@ -163,5 +163,6 @@ Slide deck ->
 - Claude Plugin
 - OpenCode & Pi.dev (open source harnesses with more customizability)
 - DSPy: structured agents
-
+- [Best practices from Agentskills.io](https://agentskills.io/skill-creation/best-practices)
+- [Evals](https://developers.openai.com/blog/eval-skills)
 
