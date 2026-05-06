@@ -17,6 +17,12 @@ def configure_lm(provider="openai", model="gpt-3.5-turbo"):
         if not api_key:
             raise ValueError("OPENAI_API_KEY not found in environment variables")
         lm = dspy.LM(f"openai/{model}", api_key=api_key)
+    elif provider == "mistral":
+        api_key = os.getenv("MISTRAL_API_KEY")
+        if not api_key:
+            raise ValueError("MISTRAL_API_KEY not found in environment variables")
+        # Mistral uses OpenAI-compatible API
+        lm = dspy.LM(f"openai/{model}", api_key=api_key, api_base="https://api.mistral.ai/v1")
     elif provider == "mock":
         # For testing without actual LM calls
         # We'll use a simple configuration that doesn't require actual LM
@@ -31,7 +37,7 @@ def configure_lm(provider="openai", model="gpt-3.5-turbo"):
 
 def get_available_providers():
     """Return list of available LM providers"""
-    return ["openai", "mock"]
+    return ["openai", "mistral", "mock"]
 
 def test_configuration():
     """Test the configuration setup"""

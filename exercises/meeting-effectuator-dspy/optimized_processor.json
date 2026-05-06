@@ -1,0 +1,49 @@
+{
+  "extract_tickets.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "meeting_notes": "Marketing Team Meeting\nMay 7, 2026\n\nDiscussion points:\n* The new campaign launch is scheduled for June 1st\n* Sarah needs to finalize the social media content calendar by Friday\n* We should analyze the Q1 metrics - John can you take a look?\n* Budget review shows we have some room for additional influencer partnerships\n* Someone should coordinate with the design team about the new branding guidelines\n\nAction items from last meeting:\n- [Complete] Finalize target audience personas\n- [In Progress] Create campaign landing page",
+        "reasoning": "The meeting notes include several actionable tasks that require follow-up. The items to extract are:\n1. **Sarah** needs to finalize the social media content calendar by **Friday (2026-05-09)**.\n2. **John** should analyze Q1 metrics (no explicit deadline mentioned, so best estimate is **2026-05-15**).\n3. **Unassigned** team member should coordinate with the design team about new branding guidelines (no deadline specified, so best estimate is **2026-05-16**).\n4. **Unassigned** team member should explore additional influencer partnerships (no deadline specified, so best estimate is **2026-05-15**).\n\nThe \"Complete\" and \"In Progress\" items from last meeting are not actionable tasks but status updates.\n\n---",
+        "tickets": "```json\n[\n    {\n        \"title\": \"Finalize social media content calendar\",\n        \"description\": \"Sarah must finalize the social media content calendar for the June 1st campaign launch. Ensure alignment with campaign goals and scheduling.\",\n        \"assignee\": \"Sarah\",\n        \"due_date\": \"2026-05-09\",\n        \"priority\": \"High\"\n    },\n    {\n        \"title\": \"Analyze Q1 metrics\",\n        \"description\": \"John needs to review and analyze Q1 marketing performance metrics to identify trends, successes, and areas for improvement.\",\n        \"assignee\": \"John\",\n        \"due_date\": \"2026-05-15\",\n        \"priority\": \"Medium\"\n    },\n    {\n        \"title\": \"Coordinate with design team on branding guidelines\",\n        \"description\": \"Clarify and align on the new branding guidelines with the design team to ensure consistency across all marketing materials.\",\n        \"assignee\": \"Unassigned\",\n        \"due_date\": \"2026-05-16\",\n        \"priority\": \"Medium\"\n    },\n    {\n        \"title\": \"Explore additional influencer partnerships\",\n        \"description\": \"Research and propose potential influencer partnerships within the remaining budget to enhance campaign reach and engagement.\",\n        \"assignee\": \"Unassigned\",\n        \"due_date\": \"2026-05-15\",\n        \"priority\": \"Medium\"\n    }\n]\n```"
+      },
+      {
+        "augmented": true,
+        "meeting_notes": "Sprint Planning Session\nTeam: Development\nDate: 2026-05-08\n\nTasks Assigned:\n1. Fix login authentication bug (Alice) - ETA: 2 days\n2. Update user profile page UI (Bob) - ETA: 3 days  \n3. Write API documentation for new endpoints (Charlie) - ETA: 5 days\n4. Set up monitoring for production errors (Team) - ETA: 1 week\n\nBlockers:\n- Waiting on design assets for profile page\n- API documentation template needs approval",
+        "reasoning": "The meeting notes outline assigned tasks with clear owners, ETAs, and blockers. Actionable tickets were extracted from assigned tasks, excluding blockers (which require external approval or assets). Due dates were estimated based on ETAs, and priorities were inferred from task criticality (e.g., authentication bugs are typically high priority).\n\n---",
+        "tickets": "[\n    {\n        \"title\": \"Fix login authentication bug\",\n        \"description\": \"Debug and resolve the login authentication vulnerability. Test thoroughly to ensure security and compatibility across all user roles.\",\n        \"assignee\": \"Alice\",\n        \"due_date\": \"2026-05-10\",\n        \"priority\": \"High\"\n    },\n    {\n        \"title\": \"Update user profile page UI\",\n        \"description\": \"Revise the user profile page UI based on design assets (pending approval). Ensure responsiveness, accessibility, and alignment with brand guidelines.\",\n        \"assignee\": \"Bob\",\n        \"due_date\": \"2026-05-11\",\n        \"priority\": \"Medium\"\n    },\n    {\n        \"title\": \"Write API documentation for new endpoints\",\n        \"description\": \"Draft comprehensive API documentation for new endpoints using the approved template. Include examples, error codes, and usage scenarios.\",\n        \"assignee\": \"Charlie\",\n        \"due_date\": \"2026-05-13\",\n        \"priority\": \"Medium\"\n    },\n    {\n        \"title\": \"Set up production error monitoring\",\n        \"description\": \"Implement and configure monitoring tools (e.g., Sentry, Datadog) to track production errors. Define alert thresholds and escalation protocols.\",\n        \"assignee\": \"Unassigned\",\n        \"due_date\": \"2026-05-15\",\n        \"priority\": \"Medium\"\n    }\n]\n\n---"
+      },
+      {
+        "meeting_notes": "Weekly Status Update - May 6, 2026\n\n- Project timeline is on track for Q3 delivery\n- Budget review shows we're under spending by 15%\n- Client feedback on last demo was positive\n- Team morale is good according to the latest survey\n- No major blockers reported this week\n- Next check-in scheduled for May 13",
+        "tickets": []
+      }
+    ],
+    "signature": {
+      "instructions": "Extract actionable tickets from meeting notes",
+      "fields": [
+        {
+          "prefix": "Meeting Notes:",
+          "description": "${meeting_notes}"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Tickets:",
+          "description": "\n        List of extracted tickets in JSON format. Each ticket should contain:\n        - title: concise summary of the action item\n        - description: detailed description of what needs to be done  \n        - assignee: person responsible (use 'Unassigned' if unclear)\n        - due_date: deadline in YYYY-MM-DD format (use best estimate if not specified)\n        - priority: High, Medium, or Low\n        \n        Only include items that represent clear actionable tasks.\n        Return empty list if no action items are found.\n        "
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.13",
+      "dspy": "3.2.1",
+      "cloudpickle": "3.1"
+    }
+  }
+}

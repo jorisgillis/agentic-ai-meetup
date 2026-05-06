@@ -2,6 +2,7 @@
 # Single-module implementation using DSPy ChainOfThought
 
 import dspy
+import re
 from typing import List, Dict
 
 class Ticket(dspy.Signature):
@@ -30,7 +31,67 @@ class BasicMeetingProcessor(dspy.Module):
     def forward(self, meeting_notes):
         """Process meeting notes and extract tickets"""
         result = self.extract_tickets(meeting_notes=meeting_notes)
-        return result
+        
+        # Parse tickets - handle different response formats
+        tickets = result.tickets
+        
+        # Handle JSON string responses (including markdown formatted)
+        if isinstance(tickets, str):
+            # Remove markdown code blocks if present
+            tickets_str = tickets.strip()
+            if tickets_str.startswith('```json'):
+                tickets_str = '\n'.join(tickets_str.split('\n')[1:-1])  # Remove first and last lines
+            elif tickets_str.startswith('```'):
+                tickets_str = '\n'.join(tickets_str.split('\n')[1:-1])
+            
+            # Clean up the string for JSON parsing
+            # Remove inline comments (// ...)
+            tickets_str = re.sub(r'\s*//.*$', '', tickets_str, flags=re.MULTILINE)
+            # Remove standalone comment lines
+            tickets_str = '\n'.join(
+                line for line in tickets_str.split('\n') 
+                if line.strip() and not line.strip().startswith('//')
+            )
+            
+            # Convert Python-style single quotes to JSON double quotes
+            if "'" in tickets_str and "{" in tickets_str:
+                tickets_str = tickets_str.replace("'", '"')
+            
+            # Try to extract valid JSON - sometimes Mistral returns multiple objects
+            try:
+                import json
+                # Try to find the first valid JSON array in the string
+                start_idx = tickets_str.find('[')
+                if start_idx != -1:
+                    # Try to find matching closing bracket
+                    brace_count = 0
+                    end_idx = start_idx
+                    for i, char in enumerate(tickets_str[start_idx:]):
+                        if char == '[':
+                            brace_count += 1
+                        elif char == ']':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                end_idx = start_idx + i + 1
+                                break
+                    
+                    if end_idx > start_idx:
+                        json_part = tickets_str[start_idx:end_idx]
+                        tickets = json.loads(json_part)
+                    else:
+                        tickets = json.loads(tickets_str)
+                else:
+                    tickets = json.loads(tickets_str)
+            except json.JSONDecodeError as e:
+                print(f"JSON parse error: {e}")
+                print(f"Failed to parse: {tickets_str[:200]}...")  # Show first 200 chars
+                tickets = []
+        
+        # Ensure tickets is always a list
+        if not isinstance(tickets, list):
+            tickets = [tickets] if tickets else []
+        
+        return dspy.Prediction(tickets=tickets)
 
 class MeetingProcessorWithFewShot:
     """Meeting processor with few-shot learning capabilities"""
