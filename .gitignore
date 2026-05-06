@@ -1,4 +1,6 @@
 *.pdf
 **/evals/iteration-*/
-
+.env
+venv
+__pycache__
 
