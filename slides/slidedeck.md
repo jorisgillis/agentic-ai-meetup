@@ -91,45 +91,28 @@ Software Engineer @ TrendMiner
 
 <h1 class="main-question">What is an Agent?</h1>
 
-- **Autonomy**: All emphasize the ability to act independently or
+- **Autonomy**: the ability to act independently or
   semi-autonomously.
 - **Tool Use**: Agents interact with external systems (APIs, apps, or
   data) to achieve goals.
 - **Goal-Oriented**: Focus on completing tasks or workflows, not just
   generating responses.
 
----
+<!-- --- -->
 
-# 1. Terminology
+<!-- # 1. Terminology -->
 
-<h1 class="main-question">Is Claude Code an agent or a harness?</h1>
+<!-- <h1 class="main-question">Is Claude Code an agent or a harness?</h1> -->
 
-## Harness vs Agent
+<!-- ## Harness vs Agent -->
 
-- Anthropic talks about Agent Skills & Subagents
-- GitHub CoPilot talks about "Adding Custom Agents"
-- [Agent Skills](https://agentskills.io/home): specification
+<!-- - Anthropic talks about Agent Skills & Subagents -->
+<!-- - GitHub CoPilot talks about "Adding Custom Agents" -->
+<!-- - [Agent Skills](https://agentskills.io/home): specification -->
 
 ---
 
 ![](https://imgs.xkcd.com/comics/standards_2x.png)
-
-<!-- --- -->
-
-<!-- # Agent -->
-
-<!-- A software entity that **perceives its environment, reasons, and acts -->
-<!-- semi-autonomously** to achieve a **specific goal**. It uses tools, -->
-<!-- executes actions, and may interact with users. -->
-
-<!-- It uses a Large Language Model for text manipulation. -->
-
-<!-- # (Agent) Skill -->
-
-<!-- A **self-contained, reusable capability that extends the agent** with -->
-<!-- (domain-specific) instructions. Has a trigger description, -->
-<!-- step-by-step instructions, and optionally bundled scripts/tools. -->
-<!-- Think of it as a **“recipe” the agent follows**. -->
 
 ---
 
@@ -220,7 +203,7 @@ background: true
 - Claude Code: use plugins
   - `.claude-plugin/plugin.json`
   - `/plugin`
-- Generic: [Agent Paackge Manager
+- Generic: [Agent Package Manager
   (APM)](https://microsoft.github.io/apm/getting-started/quick-start/)
 
 ---
@@ -235,22 +218,7 @@ background: true
 
 ---
 
-# Exercises
-
-- Examples to start from
-  - Commit Ghostwriter
-  - Pythonic Code Reviewer
-  - Journal Buddy
-  - Ticket Prep
-- Ideas
-  - PR Review: prioritize code reviews
-  - Test Gap Finder: find missed test cases
-  - Meeting Effectuator: turn meeting notes into tickets
-  - Documentation Drift Detector: spot outdated documentation
-
----
-
-![bg 75%](upskilling.jpg)
+![bg contain](exercises-superheros.jpg)
 
 ---
 
