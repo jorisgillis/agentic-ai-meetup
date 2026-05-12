@@ -135,7 +135,7 @@ Think of it as a **“recipe” the agent follows**.
 - Ideas
   - PR Review: prioritize code reviews
   - Test Gap Finder: find missed test cases
-  - Meetig Effectuator: turn meeting notes into tickets
+  - Meeting Effectuator: turn meeting notes into tickets
   - Documentation Drift Detector: spot outdated documentation
 
 ---
@@ -148,7 +148,7 @@ Think of it as a **“recipe” the agent follows**.
 # Distributing your agent skill
 
 - Claude Code: use plugins
-- Generic: [Agent Pacakge Manager
+- Generic: [Agent Package Manager
   (APM)](https://microsoft.github.io/apm/getting-started/quick-start/)
 
 Slide deck ->
