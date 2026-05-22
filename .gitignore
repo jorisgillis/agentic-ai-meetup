@@ -1,6 +1,5 @@
-*.pdf
 **/evals/iteration-*/
 .env
 venv
 __pycache__
-
+research-output.pdf
